@@ -1,0 +1,19 @@
+events {}
+
+http {
+#defining server block
+	#defining all types declared in mime.types file
+	include mime.types;
+
+	server{
+	#for simple HTTP site
+	listen 80;
+
+	#using IP as we have not configured DNS
+	server_name 185.64.255.64;
+
+	#defining root directory(relative path for a site)
+	root /var/www/demo/;
+}
+
+}
