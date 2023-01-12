@@ -1,0 +1,6 @@
+higher in file = more important
+
+1. Exact Match(=uri)
+2. Preferential Prefix Match (^~uri)
+3. REGEX (~*)
+4. Prefix Match 

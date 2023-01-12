@@ -1,0 +1,40 @@
+events {}
+
+http {
+#defining server block
+	#defining all types declared in mime.types file
+	include mime.types;
+
+	server{
+	#for simple HTTP site
+	listen 80;
+
+	#using IP as we have not configured DNS
+	server_name 185.64.255.64;
+
+	#defining root directory(relative path for a site)
+	root /var/www/demo/;
+
+	#location program behaviour of specific URLs or requests, parameter is URL to math
+
+	#by default /greet will serve also /greetsdsa /greet/ziemniak etc.
+	#to set up location for /greet and only greet is required to add equal sign, like 'location = /greet'
+
+	#to set up location for /greet and only greet is required to add equal sign, like 'location = /greet'
+	#to use regex match use ~, for example ~/greet[0-9]
+
+
+        # to make regex non sensitve use asterix "*" like ~* /greet[0-9]
+
+
+        #to make preferential prefix use "^~" example "^~ /Greet" - it will have higher priority than regular expression
+	 location ~*/greet[0-9] {
+
+
+	#return takes two arguments, response code and response data to the client
+	return 200 'Hello from NGINX greet location';
+#}
+}
+
+}
+}
