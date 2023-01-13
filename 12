@@ -1,0 +1,44 @@
+events {}
+
+http {
+#defining server block
+	#defining all types declared in mime.types file
+	include mime.types;
+
+	server{
+	#for simple HTTP site
+	listen 80;
+
+	#using IP as we have not configured DNS
+	server_name 185.64.255.64;
+
+	#defining root directory(relative path for a site)
+	root /var/www/demo/;
+
+	#these are variables defined by nginx, you can get info about them by checking nginx documentation
+	location /inspect {
+	   #return 200 "$host\n$uri\n$args";
+}
+	# check static API key, if "?apikey=1234" then returns site, if not , 401
+	#if ( $arg_apikey != 1234){
+	#return 401 "Incorrect API Key";
+	#}
+
+	#declaring new variable
+	set $weekend 'No';
+	#check if weekend
+	if ( $date_local ~ 'Saturday|Sunday|Friday' ) {
+	set $weekend 'Yes';
+}
+
+	location /is_weekend {
+	return 200 $weekend;
+}
+
+
+	#below will trigger only with you add name in URL, like "inspect?name=pyra"
+	 #  return 200 "Name: $arg_name";
+
+
+}
+}
