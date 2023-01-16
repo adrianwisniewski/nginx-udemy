@@ -1,0 +1,33 @@
+events {}
+
+http {
+#defining server block
+	#defining all types declared in mime.types file
+	include mime.types;
+
+	server{
+	#for simple HTTP site
+	listen 80;
+
+	#using IP as we have not configured DNS
+	server_name 185.64.255.64;
+
+	#defining root directory(relative path for a site)
+	root /var/www/demo/;
+	#^ -starting with
+	#w+ more than 1 character
+	#rewrite ^/user/\w+ /greet;
+
+	#adding braces allow to treat w+ as array.
+	rewrite ^/user/(\w+) /greet/$1;
+	#rewrites have higher priority than location blocks, it directs /greet/john to thumb.png, we can add last on to end of above rewrite, and then won't be redicretin anymore more
+	rewrite ^/greet/john /thumb.png;
+
+	location /greet {
+ 	   return 200 "hello user";
+}
+	location /greet/john {
+           return 200 "Hello John";
+}
+
+}}
