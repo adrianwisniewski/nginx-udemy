@@ -1,0 +1,27 @@
+events {}
+
+http {
+	include mime.types;
+
+	server{
+	listen 80;
+
+	server_name 185.64.255.64;
+
+	root /var/www/demo/;
+
+	#if /thumb.png is not working, then is redirecting to /greet
+	#try_files /cat.png /greet;
+
+	try_files $uri /cat.png /greet /friendly_404;
+
+
+	location /friendly_404 {
+	return 404 "sorry, that file could not be found";
+}
+
+	location /greet {
+ 	   return 200 "hello user";
+}
+}
+}
