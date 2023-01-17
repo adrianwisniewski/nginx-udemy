@@ -1,0 +1,31 @@
+~
+~
+"openresty.conf" 27L, 397C                                 15,1-8        All
+events {}
+
+http {
+        include mime.types;
+
+        server{
+        listen 80;
+
+        server_name 185.64.255.64;
+
+        root /var/www/demo/;
+
+
+        #configuring new access log
+        access_log /var/log/openresty/access.log;
+
+        #disabling access log
+        #access_log off;
+
+
+        location /greet {
+        #configuring new access log for location /greet
+        access_log /var/log/openresty/access-greet.log;
+           return 200 "hello user";
+}
+}
+}
+
