@@ -1,0 +1,27 @@
+#Access denied on php sites
+#FastCGI sent in stderr: "Unable to open primary script
+# in openresty error log
+events {}
+http {
+	include mime.types;
+
+	server{
+	listen 80;
+
+	server_name 185.64.255.64;
+
+	root /var/www/demo/;
+
+	index index.php index.html;
+
+	location / {
+	try_files $uri $uri/ =404;
+
+
+	location ~\.php {
+	# pass php requests to the php-fpm service(fastcgi)
+	include /etc/openresty/includes/fastcgi-params;
+	fastcgi_pass unix:/run/php-fpm/awisniewski-internet-prod.sock;
+}
+}
+}}
