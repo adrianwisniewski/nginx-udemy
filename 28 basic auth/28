@@ -1,0 +1,5 @@
+#enabling any requests for this location
+auth_basic "Secure Area:";
+#locating credentials for verified users
+auth_basic_user_file /etc/nginx/passwords;
+
