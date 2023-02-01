@@ -1,0 +1,9 @@
+#one core of CPU - one possible process for NGINX
+
+#command to check number of cores
+nproc
+#command to get more info about CPU
+lscpu
+
+#setting automatically managing for workers in nginx(how many CPU that many workers)
+worker_processes auto;
