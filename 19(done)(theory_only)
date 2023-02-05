@@ -1,0 +1,26 @@
+#value without unity is in bytes
+  
+# Buffer size for POST submissions(bigger values -> more memory used)
+  client_body_buffer_size 10K;
+#if the post is bigger than 8megabytes, nginx is returning 413
+  client_max_body_size 8m;
+
+  # Buffer size for Headers
+  client_header_buffer_size 1k;
+
+  # Max time to receive client headers/body
+  #30 without units -> miliseconds
+  client_body_timeout 12;
+  client_header_timeout 12;
+
+  # Max time to keep a connection open for(when sending data is on-going)
+  keepalive_timeout 15;
+
+  # Max time for the client accept/receive a response
+  send_timeout 10;
+
+  # Skip buffering for static files
+  sendfile on;
+
+  # Optimise sendfile packets
+  tcp_nopush on;

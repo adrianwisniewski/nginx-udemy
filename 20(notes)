@@ -1,0 +1,18 @@
+#adding modules can be done without any downtime
+
+#looking for nginx details
+nginx -V
+/opt/openresty/bin/openresty -V
+
+#checking for available modules in nginx installator
+./configure --help
+
+#to add new module copy get $configured_arguments from nginx -V command
+./configure #configured_arguments $availabe_module --modules-path=/etc/nginx/modules
+make
+
+#modules have *.so extension
+
+#add module to nginx.conf
+#path in the course is modules/module.so
+load_module $path_to_module

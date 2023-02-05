@@ -7,3 +7,11 @@ lscpu
 
 #setting automatically managing for workers in nginx(how many CPU that many workers)
 worker_processes auto;
+
+#command to check how many connections can server handle
+unlimit -n
+
+#to max up server we multiply x number of coals
+events {
+ worker_connection 1024;
+}
