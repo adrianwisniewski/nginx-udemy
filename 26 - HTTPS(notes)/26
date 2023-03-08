@@ -17,3 +17,17 @@ ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
 
 #diffied-hellman key exchange enabling 
 ssl_dhparam /etc/openresty/ssl/dhparam.pem
+
+#generating DH params
+openssl dhparam 2048 -out /etc/nginx/ssl/dhparam.pem
+#enable DH parameters
+ssl_dhparams /etc/nginx/ssl/dhparam.pem
+
+#enabling HSTS - HTTP Strict Transport Security, 
+add_header Strict-Transport-Security "max-age=31536000" always;
+
+#SSL sessions - working cache is kept in memory
+ssl_session_cache shared:SSL:40m;
+ssl_session_timeout 4h;
+#provide browser with a ticket who is validating SSL session, optimilizating SSL sessions lookups
+ssl_session_tickets on;

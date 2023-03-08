@@ -1,0 +1,26 @@
+#to get info about header use "Curl -I"
+
+
+
+#naming header
+add_header my_header "Hello World";
+
+#allowing header to be cached(both commands means the same)
+add_header Cache-Control public;
+add_header Pragma public;
+
+#response can vary accept encoding
+add_header Vary Accept-Encoding;
+
+
+#setting amount of time for caching on local machine
+#60m - minutes
+#1M - 1 month
+expires 60m;
+
+
+#example idea how to use
+
+location ~*.(css|js|jpg"png)&{
+above add_header 
+}

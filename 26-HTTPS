@@ -1,0 +1,13 @@
+#redicreting from HTTP to HTTPS
+
+server {
+	listen 80;
+	server_name $IP;
+	return 301 https://$IP$request_uri;
+}
+
+
+#replacing SSL with TLS
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+

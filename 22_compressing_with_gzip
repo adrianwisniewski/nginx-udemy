@@ -1,0 +1,10 @@
+#turning on gzip, usually in http context. Every appearance in child contex would override it
+gzip on;
+
+
+#setting up level of compression, bigger level - bigger compression, but bigger use of the server. Notic - there is no big difference in 6-9 level
+gzip_comp_level 3;
+
+#using mime ypes in gzip
+gzip_types text/css; 
+gzip_types text/javascript;
