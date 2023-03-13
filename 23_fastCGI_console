@@ -1,0 +1,8 @@
+#installing apache bench
+yum install httpd-tools
+
+#help output
+ab
+
+#sending 100 requests, with 10 connection on one time
+ab -n 100 -c 10 http:$IP/

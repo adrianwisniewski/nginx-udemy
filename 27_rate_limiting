@@ -1,0 +1,21 @@
+#install siege to test load
+#5 connections x2 = 10, 5 connections at one time
+siege -v -r 2 -c 2
+
+#defining limit zone
+
+#rate limiting per server
+#limit_req_zone $server_name;
+
+#rate limiting per user
+#limit_req_zone $binary_remote_add;
+
+#rate limit for request_url, 10m - size of zone, rate - 60r per 10 minutes=1r/1s
+limit_req_zone $request_uri zone=MYZONE:10m rate=60r/10m
+
+#reffering to above zone
+limit_req zone=MYZONE
+
+#burts is limit of additional connection to be accepted, even if they are overriding the limit. They will wait for they turn, they won't be denied. For example with default setting(2 shots with 5 connections at once) it will accept all. With 1 shot with 10 connections, it will accept only 6
+limit_req zone=MYZONE burts=5
+
